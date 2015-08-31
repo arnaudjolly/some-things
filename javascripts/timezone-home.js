@@ -59,7 +59,7 @@
 		}
 	};
 
-	$.getJSON('/data/moment-timezone-meta.json').then(function (data) {
+	$.getJSON('/some-things/data/moment-timezone-meta.json').then(function (data) {
 		for (var name in data.zones) {
 			centers.push(new Center(data.zones[name]));
 		}
