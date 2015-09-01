@@ -36,9 +36,44 @@
 			left: this.x * 100 + '%',
 			top: this.y * 100 + '%'
 		});
-		if (this.name === 'America/New_York') {
-			changeCenter(this);
-		}
+		this.m = instant.clone().tz(this.name);
+	}
+
+	function removeTroupTime ( mom ) {
+		var tt = collectTroupTime();
+		if (tt.error) return mom;
+
+		return mom.clone()
+				  .subtract( tt.days,    'days')
+				  .subtract( tt.hours,   'hours')
+				  .subtract( tt.minutes, 'minutes')
+				  .subtract( tt.seconds, 'seconds');
+	}
+
+	function collectTroupTime () {
+		var tt = { days: 0, hours: 0, minutes: 0, seconds: 0, error: false};
+
+		var daysval = getNumberFromString( $('#troupDays').val() );
+		tt.error = tt.error || daysval === false; 
+		tt.days =  daysval || 0;
+
+		var hoursval = getNumberFromString( $('#troupHours').val() );
+		tt.error = tt.error || hoursval === false; 
+		tt.hours = hoursval || 0;
+
+		var minutesval = getNumberFromString( $('#troupMinutes').val() );
+		tt.error = tt.error || minutesval === false; 
+		tt.minutes = minutesval || 0;
+
+		var secondsval = getNumberFromString( $('#troupSeconds').val() );
+		tt.error = tt.error || secondsval === false; 
+		tt.seconds = secondsval || 0;
+
+		return tt;
+	}
+
+	function getNumberFromString (str) {
+		return  /^[0-9]*$/.test( str ) && parseInt( str );
 	}
 
 	Center.prototype = {
@@ -48,9 +83,9 @@
 			return dx * dx + dy * dy;
 		},
 		activate : function () {
-			var m = instant.clone().tz(this.name);
+			var m = removeTroupTime( this.m );
 			$labelName.text(this.name);
-			$labelTime.text(m.format("hh:mm a ") + m.zoneAbbr());
+			$labelTime.text(m.format('LLLL') /* + m.zoneAbbr() */);
 			$axisX.css('left', this.x * 100 + '%');
 			$axisY.css('top', this.y * 100 + '%');
 		},
@@ -59,7 +94,7 @@
 		}
 	};
 
-	$.getJSON('/some-things/data/moment-timezone-meta.json').then(function (data) {
+	$.getJSON('data/moment-timezone-meta.json').then(function (data) {
 		for (var name in data.zones) {
 			centers.push(new Center(data.zones[name]));
 		}

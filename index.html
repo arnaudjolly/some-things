@@ -15,27 +15,41 @@
 
     <header>
       <div class="container">
-        <h1>Some-things</h1>
-        <h2>Beacon 255</h2>
+        <h1>Synchronizing attacks.</h1>
+        <h2>Target: Beacon 255</h2>
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h3><a id="worldmap" class="anchor" href="#worldmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Worldmap.</h3>
+        <h3><a id="troupTime" class="anchor" href="#troupTime" aria-hidden="true"><span class="octicon octicon-link"></span></a>Troup time.</h3>
+        <p>Fill in the times announced by the game for your troups to reach the beacon.</p>
 
-<div class="map">
-  <h3 class="map-label">
-    <span class="map-label-name"></span>
-    <span class="map-label-time"></span>
-  </h3>
-  <div class="map-wrap">
-    <div class="map-inset">
-      <div class="map-axis-x"></div>
-      <div class="map-axis-y"></div>
-    </div>
-  </div>
-</div>
+        <form name="troupTime" action="#">
+          <label for="troupDays">Days: </label><input type="number" id="troupDays" value="0"><br>
+          <label for="troupHours">Hours: </label><input type="number" id="troupHours" value="0"><br>
+          <label for="troupMinutes">Minutes: </label><input type="number" id="troupMinutes" value="0"><br>
+          <label for="troupSeconds">Seconds: </label><input type="number" id="troupSeconds" value="0"><br>
+          <p><input type="reset" value="Reset form" class="btn"></p>
+        </form>
+
+        <h3><a id="worldmap" class="anchor" href="#worldmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Worldmap.</h3>
+        <p>Then choose a point on the map. The time you see is the local time at that point when have to send your troups.</p>
+
+        <div class="map">
+          <h3 class="map-label">
+            <span>
+              <span class="map-label-name"></span>
+              <span class="map-label-time"></span>
+            </span>
+          </h3>
+          <div class="map-wrap">
+            <div class="map-inset">
+              <div class="map-axis-x"></div>
+              <div class="map-axis-y"></div>
+            </div>
+          </div>
+        </div>
 
       </section>
     </div>
