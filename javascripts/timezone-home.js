@@ -1,5 +1,5 @@
 (function(){
-	moment.locale("en");
+	moment.locale("en-gb");
 
 	var $map = $('.map-inset'),
 		$labelName = $('.map-label-name'),
@@ -10,7 +10,7 @@
 		height = $map.outerHeight(),
 		lastCenter,
 		centers = [],
-		instant = moment.tz("2015-08-31 19:59", "America/New_York");
+		instant = moment.tz("2015-09-12 22:00", "Atlantic/Reykjavik");
 
 	$(window).resize(function () {
 		width = $map.outerWidth();
