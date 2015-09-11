@@ -10,7 +10,7 @@
 		height = $map.outerHeight(),
 		lastCenter,
 		centers = [],
-		instant = moment.tz("2015-09-12 22:00", "Atlantic/Reykjavik");
+		instant = moment.tz("2015-09-12 20:00", "Atlantic/Reykjavik");
 
 	$(window).resize(function () {
 		width = $map.outerWidth();
